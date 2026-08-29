@@ -1,0 +1,55 @@
+generated: '2026-08-29'
+method: searched
+source: https://developer.strivr.com/docs/sdk/latest/index.html version selector, https://developer.strivr.com/docs/sdk/latest/unity/sw-hw-compatibility.html
+note: 'Strivr publishes no versioning policy, deprecation policy, SLA or status page in prose. What it
+  does publish is a fully versioned documentation set: every released SDK version keeps its own permanent
+  docs tree under /docs/sdk/<version>/, with a "latest" alias. That is the only lifecycle signal available,
+  and it is a real one.'
+versioning:
+  scheme: semver
+  current: 2.2.0
+  surface: SDK package + documentation
+  published_versions: 12
+  oldest: 0.1.1
+  newest: 2.2.0
+  docs_are_versioned: true
+  latest_alias: https://developer.strivr.com/docs/sdk/latest/index.html
+  note: Each version has a permanently addressable docs tree, e.g. https://developer.strivr.com/docs/sdk/0.1.5/index.html
+deprecation_policy:
+  published: false
+  note: 'No deprecation policy, sunset schedule, or RFC 8594 Deprecation/Sunset header documentation exists.
+    No StrivrDeprecation pointer is emitted. The docs do carry one hard compatibility constraint that
+    functions as an implicit no-deprecation rule for consumers: once an application is uploaded with experiences
+    defined, experiences must NOT be added or removed in future updates or data tracking on the Strivr
+    Platform breaks.'
+  implicit_constraint_source: https://developer.strivr.com/docs/sdk/latest/unity/exp-tracking.html
+status_page:
+  published: false
+  probed:
+  - url: https://status.strivr.com/
+    status: null
+    result: DNS NXDOMAIN - host does not resolve
+  note: No public status page. The trust center lists "Status Monitoring" as an internal infrastructure
+    control, but exposes no customer-facing status URL. No StatusPage pointer is emitted.
+sla:
+  published: false
+  note: No public SLA. Trust center states a Recovery Time Objective of 5 days.
+support:
+  email: support@strivr.com
+  portal: https://support.strivr.com/
+  guidance: Docs ask for Unity version, full error message and screenshots when contacting support.
+  source: https://developer.strivr.com/docs/sdk/2.1.0/index.html
+platform_compatibility:
+  unity: 2020.3 - 2022.3
+  headsets:
+  - Pico Neo 3
+  - Meta Quest
+  - HTC XR Elite
+  security_advisory:
+    id: CVE-2025-59489
+    issued: '2025-06-04'
+    vendor: Unity
+    guidance: Strivr instructs developers to move to a patched Unity editor version and to REPLACE previously
+      uploaded APKs, or to run Unity's Patcher Tool on the APK. This is a published, dated, upstream security
+      advisory that Strivr actively propagates to its SDK consumers - a genuine lifecycle signal.
+    source: https://developer.strivr.com/docs/sdk/latest/unity/sw-hw-compatibility.html

@@ -1,0 +1,61 @@
+generated: '2026-08-29'
+method: searched
+source: https://developer.strivr.com/docs/sdk/latest/unity/strivr-sdk-prefabs.html, https://developer.strivr.com/docs/sdk/latest/unity/about-strivr-vr-rig.html,
+  https://developer.strivr.com/docs/sdk/latest/unity/controller-overlays.html, https://developer.strivr.com/docs/sdk/latest/unity/about-pause-feature.html
+docs: https://developer.strivr.com/docs/sdk/latest/unity/strivr-sdk-prefabs.html
+note: 'These are client-side embeddable runtime components, but the host is a Unity/XR scene rather than
+  a web page - Strivr ships Unity prefabs, not web components or hosted iframes. They are catalogued here
+  because they are functionally the same thing: drop-in UI/runtime surfaces the provider maintains so
+  the consumer does not build them. Strivr states the three primary prefabs do not depend on each other
+  and can be used individually, and that SDK prefabs must be placed in the FIRST scene of the build only.'
+distribution: bundled in the com.strivr.strivrsdk Unity package under Packages\Strivr SDK\Runtime\
+families:
+- family: Data
+  components:
+  - name: StrivrSDKDataManager
+    kind: prefab
+    description: Automatically adds Session Start / Session End events to the app, and uploads buffered
+      events when the application is paused or quit. Required in the first scene before StrivrAnalytics.TrackEvent
+      can be used.
+- family: XR Rig / Locomotion
+  components:
+  - name: StrivrSDKXROriginManager
+    kind: prefab
+    description: A VR rig aligned with the Unity XR Interaction Toolkit "Complete XR Origin" prefab, customized
+      for Pico Neo 3, Quest 2 and HTC Vive/XR Elite, falling back to default controllers otherwise.
+    strivr_modifications:
+    - Action Assets swapped from XRI Default Input Actions to Strivr XRI Default Input Actions (adds joystick
+      processors)
+    - Grab Move Provider removed so users cannot move while paused
+    - Both LeftHand and RightHand set to Teleport Locomotion - Strivr found Smooth Locomotion can cause
+      motion sickness
+    - Rotation on teleport disabled to avoid disorienting users
+  - name: StrivrSDKLeftControllerModel
+    kind: prefab
+    description: Platform-accurate left controller model with input-mirroring animations for Quest 2,
+      Pico Neo 3 and HTC XR Elite.
+  - name: StrivrSDKRightControllerModel
+    kind: prefab
+    description: Platform-accurate right controller model with input-mirroring animations.
+  - name: Controller overlays
+    kind: sprite set
+    description: Overlay sprites signalling which action each controller input maps to; they fade into
+      view as the controller nears the user's face.
+- family: Application lifecycle / UI
+  components:
+  - name: StrivrSDKPauseManager
+    kind: prefab
+    description: 'Adds a customized pause placard bound to a new Pause action under XRI LeftHand Interaction
+      (buttons: menu, primaryButton, secondaryButton, start). Selecting Exit returns the user to the Strivr
+      Player application when it is installed on the headset; with Test Mode enabled, exit does NOT launch
+      the Player, which speeds up development.'
+    known_limitation: On Quest devices the Oculus home button cannot be overridden, so it will not trigger
+      the Strivr pause placard.
+- family: Tracking
+  components:
+  - name: StrivrObjectTracker
+    kind: script
+    description: Attach to any GameObject to fire an event when that object enters the user's (narrowed)
+      field of view.
+component_count: 7
+placement_rule: Strivr SDK prefabs need to be placed in the first scene of the build only.

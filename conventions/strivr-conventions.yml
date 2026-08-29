@@ -1,0 +1,124 @@
+generated: '2026-08-29'
+method: searched
+source: https://developer.strivr.com/docs/sdk/latest/unity/how-to-track-events.html, https://developer.strivr.com/docs/sdk/latest/unity/exp-tracking.html,
+  https://developer.strivr.com/docs/sdk/latest/unity/tracking-types.html, https://developer.strivr.com/docs/sdk/latest/unity/tracking-settings.html,
+  https://developer.strivr.com/docs/sdk/latest/unity/working-with-data.html
+note: 'These are SDK-level runtime semantics, not HTTP semantics: Strivr publishes no REST contract, so
+  there is no pagination, expansion, request-id or error-envelope surface to document. Everything below
+  is stated in Strivr''s own SDK documentation.'
+surface_type: client SDK (Unity/C#) writing telemetry to a hosted platform
+auth_style:
+  summary: Auth0-brokered SSO for the Portal and the Unity editor login; bearer tokens on api.strivr.com
+  see: authentication/strivr-authentication.yml
+namespace: Strivr.SDK
+event_conventions:
+  entry_point: StrivrAnalytics.TrackEvent("Event Name").End()
+  terminator_required: true
+  terminator_note: Every call MUST be terminated with .End(), including events with no parameters.
+  parameters:
+    method: Add(string key, string value)
+    chainable: true
+    count: unbounded
+    overloads:
+    - string
+    - float
+    - double
+    - int
+    - bool
+    - Vector3
+    - TimeSpan
+    fallback: use ToString() for any other type
+  naming_rules:
+    applies_to:
+    - event names
+    - parameter keys
+    length: 1-64 characters
+    charset: alphanumeric (a-zA-Z0-9), spaces, underscores, dashes
+    non_empty: true
+    guidance: optimize for readability - names render directly in the dashboard
+experience_conventions:
+  concept: '"Experiences" are how Strivr aggregates and tracks metrics across a training session. Every
+    project must have at least one experience created, started and ended.'
+  lifecycle:
+  - Create > Strivr > Experience (Unity asset)
+  - StrivrAnalytics.StartExperience(experience);
+  - StrivrAnalytics.FinishExperience();
+  single_sitting_guidance: If the APK is one training module completed in one sitting, start and end the
+    experience at the beginning and end of the application lifecycle.
+  multi_module_guidance: Applications with separable training content may create multiple experiences.
+  scoring: Experiences can be scored; users are awarded points for scored questions, reviewable in the
+    Strivr Portal.
+tracking_conventions:
+  gaze_tracking:
+    kind: primary, generic
+    mechanism: Raycast fired outward from the center of the main camera on a timed interval
+    default_interval_seconds: 1
+    enabled_by_default: true
+    event_payload: name of the hit object + hit point coordinate
+    configurable:
+    - enable/disable
+    - time interval
+    - raycast distance
+  object_tracking:
+    kind: secondary, specific
+    mechanism: attach StrivrObjectTracker to a GameObject; fires an event when the object enters the user's
+      field of view
+    field_of_view_window: narrowed window with left/right/down/up thresholds expressed as decimal fractions
+      of the rendered 1x1 view (e.g. left 0.4 = 40% mark of the FOV x-axis)
+    rationale: an object being rendered is not the same as being looked at; peripheral objects are excluded
+versioning:
+  see: lifecycle/strivr-lifecycle.yml
+  scheme: semver
+  docs_versioned: true
+idempotency:
+  supported: false
+  grade: na
+  note: The public surface is append-only behavioural telemetry emitted from a headset, not a transactional
+    API. There is no request-retry contract, no idempotency key, and no documented deduplication of repeated
+    events. No Idempotency pointer is emitted - asserting one here would be fabrication.
+dry_run_mode:
+  supported: true
+  grade: documented
+  note: 'Test Mode is the closest published equivalent: with it disabled, no data reaches the linked Strivr
+    project, so a developer can execute the full instrumented flow with no production effect. See sandbox/strivr-sandbox.yml.'
+reversibility:
+  grade: na
+  assessment: The public developer surface has no user-facing write operations that can be reversed. It
+    emits telemetry; it does not create, modify or delete resources a consumer can cancel, refund, void
+    or restore. reversibility is therefore `na` rather than a failed check.
+  write_surfaces:
+  - surface: event + gaze telemetry emission (StrivrAnalytics.TrackEvent / gaze raycast / StrivrObjectTracker)
+    reversal_operation: null
+    window: null
+    note: No delete, purge, retract or correction operation is documented for data already sent to the
+      Strivr Portal. Strivr publishes no data-retention or deletion window for telemetry on its public
+      developer surface. NO WINDOW IS ASSERTED because none is stated.
+  - surface: experience definition in a shipped APK
+    reversal_operation: null
+    window: null
+    irreversible: true
+    note: 'Explicitly and permanently irreversible by Strivr''s own instruction: "Once you upload an application
+      with experience(s) defined and implemented, do NOT change it in future updates by adding or removing
+      experiences. This can break data tracking on the Strivr Platform." This is the single most important
+      irreversibility fact on the surface - an agent or developer must get the experience set right before
+      first upload.'
+    source: https://developer.strivr.com/docs/sdk/latest/unity/exp-tracking.html
+  - surface: APK upload
+    reversal_operation: replace the uploaded APK with a rebuilt one
+    window: null
+    note: Replacement is documented in the CVE-2025-59489 guidance ("previous APK uploads should be replaced"),
+      so a replace path exists, but no time window or formal rollback operation is stated.
+    source: https://developer.strivr.com/docs/sdk/latest/unity/sw-hw-compatibility.html
+not_applicable:
+  pagination: no public REST contract
+  field_expansion: no public REST contract
+  metadata: no public REST contract
+  request_id_tracing: no public REST contract
+  error_envelope: no public REST contract - see conformance/strivr-conformance.yml
+  rate_limit_signaling: see rate-limits/strivr-rate-limits.yml (undocumented)
+cross_links:
+- authentication/strivr-authentication.yml
+- lifecycle/strivr-lifecycle.yml
+- sandbox/strivr-sandbox.yml
+- rate-limits/strivr-rate-limits.yml
+- data-model/strivr-data-model.yml

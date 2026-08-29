@@ -1,0 +1,50 @@
+generated: '2026-08-29'
+method: searched
+source: https://developer.strivr.com/docs/sdk/latest/unity/download-strivr-unity-package.html + https://developer.strivr.com/docs/sdk/latest/index.html
+  version selector
+note: 'Strivr distributes exactly one first-party client library: the Strivr SDK Unity package. It is
+  NOT published to any public registry - npm (registry.npmjs.org/com.strivr.strivrsdk 404), OpenUPM (package.openupm.com/com.strivr.strivrsdk
+  404 "no such package available") and PyPI (404) were all probed and miss. The package is downloaded
+  as a com.strivr.strivrsdk folder from the Download SDK button on the Developer Dashboard inside the
+  Strivr Portal, then added to Unity via Package Manager > Add package from disk. Portal access must be
+  provisioned by Strivr, so the artifact itself is gated even though its documentation is public.'
+packages:
+- name: com.strivr.strivrsdk
+  title: Strivr SDK for Unity
+  language: C# (Unity)
+  registry: vendor-portal
+  official: true
+  version: 2.2.0
+  published: null
+  version_source: https://developer.strivr.com/docs/sdk/latest/index.html documentation version selector
+    (latest of 13 published versions)
+  published_note: null = checked, nothing to record. Strivr publishes no dated release notes and the package
+    is not on a registry with a metadata endpoint, so no release date is discoverable from any public
+    surface.
+  install: Unity > Window > Package Manager > + > Add package from disk... > com.strivr.strivrsdk/package.json
+  download: Strivr Portal > Developer > Developer Dashboard > Download SDK
+  docs: https://developer.strivr.com/docs/sdk/latest/index.html
+  namespace: Strivr.SDK
+  requires:
+    unity: 2020.3 - 2022.3
+    headsets:
+    - Pico Neo 3
+    - Meta Quest
+    - HTC XR Elite
+    builds_on: Unity XR Interaction Toolkit
+  license: https://developer.strivr.com/sdk-license-agreement.html
+registries_probed:
+- registry: npm
+  url: https://registry.npmjs.org/com.strivr.strivrsdk
+  status: 404
+- registry: npm
+  url: https://registry.npmjs.org/strivr
+  status: 404
+- registry: openupm
+  url: https://package.openupm.com/com.strivr.strivrsdk
+  status: 404
+- registry: pypi
+  url: https://pypi.org/pypi/strivr/json
+  status: 404
+package_count: 1
+official_count: 1

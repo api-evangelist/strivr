@@ -1,0 +1,30 @@
+generated: '2026-08-29'
+method: searched
+source: probes of https://api.strivr.com/mcp, /sse, /api/mcp + search of strivr.com and developer.strivr.com
+note: NO MCP SERVER EXISTS AND NO POINTER IS EMITTED. Strivr publishes no hosted or local MCP server,
+  and no candidate tool list could be derived because Strivr publishes no OpenAPI to derive operations
+  from. This file records a verified absence. No MCPServer type is wired into apis.yml - doing so would
+  assert an agent surface Strivr does not have.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+tools: []
+tool_count: 0
+probes:
+- url: https://api.strivr.com/mcp
+  method: POST tools/list
+  status: 401
+  result: bearer-gated, zero-length body
+- url: https://api.strivr.com/sse
+  method: POST tools/list
+  status: 401
+  result: bearer-gated, zero-length body
+- url: https://api.strivr.com/api/mcp
+  method: POST tools/list
+  status: 401
+  result: bearer-gated, zero-length body
+derivation_blocked_by: no OpenAPI, GraphQL SDL or any other machine-readable contract published

@@ -1,0 +1,87 @@
+generated: '2026-08-29'
+method: derived
+source: https://developer.strivr.com/docs/sdk/latest/index.html version selector (documentation version
+  list)
+note: 'DERIVED, not searched: Strivr publishes NO dated changelog or release-notes page. This is reconstructed
+  from the documentation version selector, which is the only public record of SDK releases. No release
+  dates or per-release change descriptions are published anywhere, so entries carry version and docs URL
+  only - date is null throughout, meaning "checked, nothing to record", not "not checked".'
+scheme: semver
+current_version: 2.2.0
+entry_count: 12
+has_dated_changelog: false
+entries:
+- version: 2.2.0
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/2.2.0/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 2.1.0
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/2.1.0/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 2.0.0
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/2.0.0/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 1.2.1
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/1.2.1/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 1.2.0
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/1.2.0/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 1.1.0
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/1.1.0/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 1.0.0
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/1.0.0/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 0.1.5
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/0.1.5/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 0.1.4
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/0.1.4/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 0.1.3
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/0.1.3/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 0.1.2
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/0.1.2/index.html
+  breaking: null
+  additions: null
+  highlights: null
+- version: 0.1.1
+  date: null
+  docs: https://developer.strivr.com/docs/sdk/0.1.1/index.html
+  breaking: null
+  additions: null
+  highlights: null
+gap: 'A dated changelog with per-release breaking/added/fixed detail is the single cheapest artifact Strivr
+  could add: the version tree already exists, only the dates and the deltas are missing.'

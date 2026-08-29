@@ -1,0 +1,25 @@
+generated: '2026-08-29'
+method: searched
+source: https://developer.strivr.com/docs/sdk/latest/ (full SDK documentation tree) + live probe of https://api.strivr.com/
+limit_count: 0
+note: 'Strivr publishes no rate limits of any kind. The complete public SDK documentation tree was read
+  and contains no quota, throttle, burst or backoff guidance. The API host cannot be observed either:
+  api.strivr.com answers 401 with a zero-length body and only the WWW-Authenticate header, so no RateLimit-*,
+  X-RateLimit-* or Retry-After header is exposed to an unauthenticated caller. An honest zero.'
+limits: []
+response_headers:
+  observed: []
+  documented: []
+  note: None observed on the unauthenticated 401 response; none documented.
+exhaustion_status_code: null
+retry_guidance_published: false
+sdk_side_pacing:
+  note: 'The only throughput-shaping behaviour Strivr documents is client-side, not server-side: the primary
+    gaze raycast fires on a configurable timed interval (default 1 second) and its interval and distance
+    can be changed in Tracking Settings, and StrivrSDKDataManager batches event upload to application
+    pause/quit rather than emitting per event. These reduce call volume but are not a published rate limit.'
+  source: https://developer.strivr.com/docs/sdk/latest/unity/tracking-settings.html
+evidence:
+- url: https://api.strivr.com/
+  status: 401
+  finding: 'zero-length body; only WWW-Authenticate: Bearer returned - no rate-limit headers'

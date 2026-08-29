@@ -1,0 +1,32 @@
+generated: '2026-08-29'
+method: searched
+source: https://developer.strivr.com/docs/sdk/latest/unity/working-with-data.html
+docs: https://developer.strivr.com/docs/sdk/latest/unity/working-with-data.html
+note: Strivr does not ship a hosted sandbox, test credentials, or fixture tooling. It DOES ship an explicit
+  test-vs-live switch in the SDK, which is the genuine equivalent for a telemetry surface, plus two documented
+  ways to generate data without shipping to production.
+modes:
+- name: Test Mode
+  location: Unity project settings (Strivr > Project Settings)
+  default: null
+  description: 'Test Mode must be ENABLED for data to be transferred to the linked project in the Strivr
+    Portal from the Unity editor. Strivr states plainly: "If Test Mode is off, no data will be transferred
+    to the linked project." Testing from within the editor additionally requires being signed in within
+    the Strivr window.'
+  source: https://developer.strivr.com/docs/sdk/latest/unity/working-with-data.html
+data_generation_paths:
+- name: Unity editor play-mode
+  description: Enter play-mode in the Unity console to send raw data to the linked Strivr project. Requires
+    being logged in under Strivr > Project Settings.
+- name: In-headset run-through
+  description: Put on the headset and go through the project from beginning to end; data from each tagged
+    event is sent to the Strivr Portal.
+verification:
+  where: Strivr Portal > Developer > Developer Dashboard
+  what: raw event data per linked project
+test_credentials_published: false
+test_values_published: false
+hosted_sandbox: false
+time_simulation: false
+sandbox_note: No test keys, magic identifiers, test clocks or fixture triggers are published. Nothing
+  was invented here.

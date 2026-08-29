@@ -1,0 +1,106 @@
+generated: '2026-08-29'
+method: derived
+source: https://developer.strivr.com/docs/sdk/latest/unity/exp-tracking.html, https://developer.strivr.com/docs/sdk/latest/unity/how-to-track-events.html,
+  https://developer.strivr.com/docs/sdk/latest/unity/create-project-portal.html, https://developer.strivr.com/docs/sdk/latest/unity/linking-unity-to-strivr.html,
+  https://developer.strivr.com/docs/sdk/latest/unity/working-with-data.html, https://developer.strivr.com/docs/sdk/latest/unity/tracking-types.html
+note: DERIVED FROM DOCUMENTATION, NOT FROM A SPEC. Strivr publishes no OpenAPI or JSON Schema, so there
+  are no $ref links or id-reference fields to walk. This graph is reconstructed from the entities the
+  SDK documentation names and the relationships it states explicitly. Field-level types are recorded only
+  where the docs state them (event/parameter naming rules, parameter overload types); no field was invented.
+entities:
+- name: Organization
+  description: The customer company. Strivr provisions SSO per organization.
+  fields: []
+  note: Named only indirectly - "contact Strivr with a list of users that require access at your company".
+- name: Project
+  description: A Strivr Portal project, created on the Developer Dashboard, that a Unity project is linked
+    to. All telemetry lands in the linked project.
+  fields:
+  - name: name
+    type: string
+    stated: true
+- name: UnityProject
+  description: The developer's Unity project, linked one-to-one to a Strivr Project via Strivr > Project
+    Settings. The selection persists across editor sessions.
+  fields: []
+- name: Application
+  description: The built APK uploaded to Strivr, containing one or more Experiences.
+  fields: []
+  constraint: Experiences must not be added or removed after first upload or data tracking breaks.
+- name: Experience
+  description: The unit across which Strivr aggregates and tracks metrics for a training session. Created
+    as a Unity asset (Create > Strivr > Experience), then started and finished at runtime.
+  fields:
+  - name: scored
+    type: boolean
+    stated: true
+    note: scored experiences award points for scored questions, reviewable in the Portal
+- name: Session
+  description: A single run-through. StrivrSDKDataManager emits Session Start and Session End events automatically.
+  fields: []
+- name: Event
+  description: A tracked occurrence, either custom (StrivrAnalytics.TrackEvent) or automatic (session,
+    gaze, object-focus).
+  fields:
+  - name: name
+    type: string
+    constraints: 1-64 chars; alphanumeric, spaces, underscores, dashes; non-empty
+    stated: true
+- name: EventParameter
+  description: A typed key/value pair chained onto an Event via .Add(key, value).
+  fields:
+  - name: key
+    type: string
+    constraints: 1-64 chars; alphanumeric, spaces, underscores, dashes; non-empty
+    stated: true
+  - name: value
+    type: string | float | double | int | bool | Vector3 | TimeSpan
+    stated: true
+- name: GazeSample
+  description: Emitted by the primary gaze raycast on a timed interval when it hits an object.
+  fields:
+  - name: hit_object_name
+    type: string
+    stated: true
+  - name: hit_point
+    type: Vector3 coordinate
+    stated: true
+relationships:
+- from: Organization
+  to: Project
+  type: has_many
+  via: Portal tenancy
+- from: Project
+  to: UnityProject
+  type: has_one
+  via: Strivr > Project Settings link selection
+- from: Project
+  to: Application
+  type: has_many
+  via: APK upload
+- from: Application
+  to: Experience
+  type: has_many
+  via: Experience assets compiled into the build
+  constraint: set is frozen after first upload
+- from: Experience
+  to: Session
+  type: has_many
+  via: StartExperience / FinishExperience
+- from: Session
+  to: Event
+  type: has_many
+  via: StrivrSDKDataManager upload
+- from: Event
+  to: EventParameter
+  type: has_many
+  via: .Add(key, value) chain
+- from: Session
+  to: GazeSample
+  type: has_many
+  via: gaze raycast interval / StrivrObjectTracker
+entity_count: 9
+relationship_count: 8
+id_prefixes_published: false
+gap: No object reference, no id formats, no field-level schema is published. This graph is the ceiling
+  of what Strivr's public surface supports.

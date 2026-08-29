@@ -1,0 +1,49 @@
+generated: '2026-08-29'
+method: searched
+source: https://developer.strivr.com/docs/sdk/latest/unity/getting-started.html, https://developer.strivr.com/docs/sdk/latest/unity/access-strivr-portal.html,
+  https://developer.strivr.com/docs/sdk/latest/unity/linking-unity-to-strivr.html, live probe of https://api.strivr.com/
+docs: https://developer.strivr.com/docs/sdk/latest/unity/getting-started.html
+note: Derived from the published SDK documentation and one live probe, NOT from an OpenAPI - Strivr publishes
+  no securitySchemes because it publishes no machine-readable contract. Every fact below is either stated
+  in Strivr's own docs or observed on the wire.
+schemes:
+- name: portal_sso
+  type: openIdConnect
+  provider: Auth0
+  flow: browser redirect / SSO
+  applies_to:
+  - https://portal.strivr.com/
+  - Strivr SDK Unity Editor window (Strivr > Project Settings > Log in)
+  description: 'Access to the Strivr Portal is single sign-on, brokered by Auth0. The documented entry
+    point is "Log in with Google" at portal.strivr.com. Self-service signup does not exist: the docs instruct
+    you to contact Strivr with a list of users at your company, after which Strivr configures SSO and
+    issues credentials, and the user verifies identity via an email from Auth0.'
+  self_service: false
+  evidence: https://developer.strivr.com/docs/sdk/latest/unity/access-strivr-portal.html
+- name: api_bearer
+  type: http
+  scheme: bearer
+  in: header
+  header: Authorization
+  applies_to:
+  - https://api.strivr.com
+  description: 'The Strivr API host answers every unauthenticated request - including / , /openapi.json
+    and every /.well-known/ path - with HTTP 401 and the response header WWW-Authenticate: Bearer, with
+    a zero-length body. This establishes a bearer-token model on the wire. Strivr does not publish how
+    a token is obtained, its lifetime, its format, or any scope vocabulary.'
+  method: probed
+  evidence:
+    url: https://api.strivr.com/
+    http_status: 401
+    response_header: 'WWW-Authenticate: Bearer'
+    server: Apache/2.4.58 (Ubuntu)
+unity_editor_flow: In Unity, Strivr > Project Settings > Log in opens a web page to complete the login
+  flow; after login the developer selects which Strivr project the Unity project is linked to. The selection
+  persists across editor sessions.
+oauth_scopes_published: false
+api_keys_published: false
+mtls: false
+gaps:
+- No token issuance or refresh documentation
+- No scope vocabulary
+- No public OAuth metadata document (all /.well-known/ paths on api.strivr.com are themselves 401-gated)

@@ -1,0 +1,106 @@
+# Strivr
+
+> Strivr is an enterprise frontline-work platform founded in 2015 out of Stanford University's Virtual Human
+> Interaction Lab. It began as immersive VR workforce training deployed at scale by Walmart, Bank of America and
+> Verizon, and is now an AI-native "Frontline Intelligence" layer that trains custom Visual Language Models on
+> real-world workflows to detect, correct and guide task execution in real time through smart glasses.
+
+generated: 2026-08-29
+method: generated
+source: apis.yml + artifacts in this repository (API Evangelist enrichment pipeline)
+
+## What an agent needs to know first
+
+Strivr publishes **no machine-readable API contract**. There is no OpenAPI, no GraphQL SDL, no AsyncAPI, no
+Postman collection and no JSON Schema anywhere on its public surface. Verified 2026-08-29 against every Strivr
+host.
+
+The REST host `https://api.strivr.com` is real but entirely closed: every path — including `/`, `/openapi.json`
+and every `/.well-known/*` document — returns `HTTP 401` with the header `WWW-Authenticate: Bearer` and a
+zero-length body. There is no anonymous surface to introspect.
+
+Strivr's public developer surface is a **client SDK for Unity**, not a callable web API. An agent cannot call
+Strivr. A developer integrates with Strivr by embedding the Strivr SDK in a Unity application built for a VR
+headset.
+
+There is **no MCP server** and **no A2A agent card**. Both were probed and both are absent.
+
+## Developer surface
+
+- [Strivr Developer Site](https://developer.strivr.com/): the developer portal.
+- [Strivr SDK Documentation](https://developer.strivr.com/docs/sdk/latest/index.html): the SDK reference, versioned
+  per release (12 published versions, 0.1.1 through 2.2.0, each with a permanent docs tree).
+- [Getting Started](https://developer.strivr.com/docs/sdk/latest/unity/getting-started.html): access, download, link.
+- [Strivr Portal](https://portal.strivr.com/): the console where projects are created and telemetry is reviewed.
+- [Support](https://support.strivr.com/) and support@strivr.com.
+
+## Access model
+
+Access is not self-service. Strivr must provision single sign-on for named users at your company before you can
+reach the Portal; the documented first step is to contact Strivr with a user list. Portal login is Auth0-brokered
+"Log in with Google". The SDK package is downloaded from the Developer Dashboard inside the Portal — it is not
+published to npm, OpenUPM or PyPI (all probed, all 404).
+
+## The SDK
+
+`com.strivr.strivrsdk`, version 2.2.0, C# for Unity 2020.3–2022.3, namespace `Strivr.SDK`. Supports Pico Neo 3,
+Meta Quest and HTC XR Elite headsets. Builds on Unity's XR Interaction Toolkit.
+
+What it does: creates and scores **experiences**, tracks **custom events** with typed parameters, and captures
+**gaze** and **object-focus** telemetry, streaming all of it to the linked project in the Strivr Portal.
+
+Core calls:
+
+    using Strivr.SDK;
+    StrivrAnalytics.StartExperience(experience);
+    StrivrAnalytics.TrackEvent("Example Event Name").Add("key", value).End();
+    StrivrAnalytics.FinishExperience();
+
+Rules that matter:
+
+- Every `TrackEvent` chain **must** be terminated with `.End()`, even with no parameters.
+- Event names and parameter keys: 1–64 characters, non-empty, alphanumeric plus spaces, underscores and dashes.
+- `.Add(key, value)` overloads accept string, float, double, int, bool, Vector3 and TimeSpan.
+- Every project must create, start and end at least one experience.
+- **Irreversible:** once an application is uploaded with experiences defined, do not add or remove experiences in
+  future updates — Strivr states this breaks data tracking on the platform.
+- SDK prefabs must be placed in the **first scene** of the build only.
+
+## Testing
+
+The SDK has a **Test Mode** switch in Unity project settings. With Test Mode off, no data is transferred to the
+linked Strivr project. There are no test credentials, magic identifiers, test clocks or fixtures.
+
+## Security and compliance
+
+- Trust center: <https://trust.strivr.com/> (SafeBase). SOC 2 Type 2, CCPA, CPRA. Pentest report and network
+  diagram available on request. Qualys SSL Labs grade A.
+- Domain security probed 2026-08-29: TLS 1.3 on all hosts, DNSSEC enabled, DMARC policy `reject`, HSTS on
+  www.strivr.com (max-age 31536000). No CAA records.
+- No `security.txt`, no bug bounty, no coordinated disclosure page.
+- Strivr propagates Unity security advisory CVE-2025-59489 (2025-06-04) to SDK consumers and instructs replacing
+  previously uploaded APKs.
+
+## Commercial
+
+No published pricing. `https://www.strivr.com/pricing` returns 200 but serves the platform page — it is an alias,
+not a pricing page. The motion is enterprise contact-sales ("Get early access", "Talk to our team").
+
+## Standards posture
+
+Strivr operates in enterprise learning but conforms to none of that market's interoperability standards. Learner
+telemetry uses a proprietary Unity event vocabulary, not xAPI statements; there is no LRS endpoint, no cmi5, no
+SCORM manifest, no LTI launch and no Caliper envelope. Routing Strivr experience data into an existing LRS
+requires a bespoke connector.
+
+## Company
+
+- [Website](https://www.strivr.com/) · [Platform](https://www.strivr.com/platform) · [About](https://www.strivr.com/about-us)
+- [Blog](https://www.strivr.com/blog) (no RSS/Atom feed published) · [FAQs](https://www.strivr.com/faqs)
+- [Terms](https://www.strivr.com/terms) · [Privacy](https://www.strivr.com/privacy)
+- Note: the GitHub organization `github.com/strivr` is **not** this company — it belongs to "Strivr.io", whose
+  domain redirects to daymi.co. Strivr (strivr.com) publishes no public GitHub organization.
+
+## Optional
+
+- [Content Studio](https://www.strivr.com/content-studio) · [Customers](https://www.strivr.com/customers) · [Press](https://www.strivr.com/press)

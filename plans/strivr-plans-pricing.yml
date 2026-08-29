@@ -1,0 +1,24 @@
+generated: '2026-08-29'
+method: searched
+source: https://www.strivr.com/platform and https://www.strivr.com/pricing
+plan_count: 0
+note: 'Strivr publishes NO pricing. There is no pricing page: https://www.strivr.com/pricing returns HTTP
+  200 but serves the platform page byte-for-byte (55016 bytes, identical <title> "AI-Powered Frontline
+  Error Detection Platform | Strivr") - it is an alias, not a pricing page, and no Pricing pointer is
+  emitted for it. Pricing is not listed in the site navigation either. The commercial motion is enterprise
+  contact-sales: the calls to action across the site are "Get early access", "Talk to our team" and "Contact
+  us", and developer access additionally requires Strivr to provision SSO for named users at your company.'
+model: enterprise contact-sales
+self_service_signup: false
+free_tier: false
+plans: []
+evidence:
+- url: https://www.strivr.com/pricing
+  status: 200
+  finding: alias of /platform - identical title and byte size, not a pricing page
+- url: https://www.strivr.com/platform
+  status: 200
+  finding: CTAs are "Get early access" / "Talk to our team"
+- url: https://developer.strivr.com/contact.html
+  status: 200
+  finding: developer access is a contact form

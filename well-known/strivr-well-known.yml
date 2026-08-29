@@ -1,0 +1,158 @@
+generated: '2026-08-29'
+method: probed
+source: direct HTTPS GET of each /.well-known/ path on every Strivr host
+note: 'NO POINTER EMITTED. Every /.well-known/ path on every Strivr host missed, so no WellKnown or SecurityTxt
+  type is wired into apis.yml - this file records a verified absence, not a presence. Two distinct failure
+  modes were seen: api.strivr.com answers 401 WWW-Authenticate: Bearer with a zero-length body to every
+  path including the anonymous OAuth metadata documents, and developer.strivr.com is a Webflow site whose
+  catch-all returns the 12016-byte homepage HTML shell with HTTP 200 for every unknown path - a 200 that
+  is NOT a document and is treated here as a miss.'
+hosts:
+- host: api.strivr.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  - path: /.well-known/openid-configuration
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  - path: /.well-known/oauth-protected-resource
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  - path: /.well-known/api-catalog
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  - path: /.well-known/ai-plugin.json
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  - path: /.well-known/agent-card.json
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  - path: /.well-known/agent.json
+    status: 401
+    file: null
+    note: '401 WWW-Authenticate: Bearer, zero-length body'
+  note: Entire host is bearer-gated; even anonymous OAuth metadata is unreachable.
+- host: developer.strivr.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    note: HTTP 200 but body is the Webflow homepage HTML shell (12016 bytes) - SPA catch-all false positive,
+      not a document
+  note: Webflow catch-all answers 200 for every unknown path; robots.txt and sitemap.xml return the same
+    shell.
+- host: www.strivr.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+    note: 404, body "Invalid .well-known" (88 bytes)
+- host: portal.strivr.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+    note: 404 Next.js not-found page (18484 bytes)
+documents_found: 0

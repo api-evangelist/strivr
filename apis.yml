@@ -1,18 +1,62 @@
 aid: strivr
 name: Strivr
-description: 'Strivr is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Strivr is an enterprise frontline-work platform founded in 2015 out of Stanford University''s
+  Virtual Human Interaction Lab by Derek Belch. It began as immersive VR workforce training deployed at
+  scale by Walmart, Bank of America and Verizon, and has since become an AI-native "Frontline Intelligence"
+  layer that trains custom Visual Language Models on real-world workflows to detect, correct and guide
+  task execution in real time through smart glasses. Its public developer surface is the Strivr SDK for
+  Unity, which links a Unity project to a project in the Strivr Portal and streams experience, custom-event
+  and gaze-tracking telemetry into Strivr''s performance analytics. Strivr publishes no OpenAPI, GraphQL
+  SDL or Postman collection; the REST host api.strivr.com answers 401 WWW-Authenticate: Bearer on every
+  path.'
 url: https://raw.githubusercontent.com/api-evangelist/strivr/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+image: https://developer.strivr.com/images/Logo.png
 specificationVersion: '0.20'
 created: '2026-08-29'
 modified: '2026-08-29'
 tags:
-- Company
-apis: []
+- Immersive Learning
+- Virtual Reality
+- Workforce Training
+- Frontline Operations
+- Artificial Intelligence
+- Analytics
+- Unity SDK
+- Smart Glasses
+- Enterprise
+- Learning and Development
+apis:
+- aid: strivr:strivr-unity-sdk
+  name: Strivr SDK for Unity
+  description: The Strivr Software Development Kit for Unity makes Unity projects compatible with the
+    Strivr Player in-headset software and with the Strivr Portal. It is used to create and score experiences,
+    track custom events with typed parameters, and capture gaze and object-focus telemetry, which is streamed
+    to the linked project in the Strivr Portal for usage and performance analytics. Distributed as the
+    Unity package com.strivr.strivrsdk from the Developer Dashboard in the Strivr Portal; supports Unity
+    2020.3-2022.3 on Pico Neo 3, Meta Quest and HTC XR Elite headsets.
+  humanURL: https://developer.strivr.com/docs/sdk/latest/index.html
+  baseURL: https://api.strivr.com
+  tags:
+  - Unity SDK
+  - Immersive Learning
+  - Analytics
+  - Event Tracking
+  - Virtual Reality
+  properties:
+  - type: Documentation
+    url: https://developer.strivr.com/docs/sdk/latest/index.html
+  - type: GettingStarted
+    url: https://developer.strivr.com/docs/sdk/latest/unity/getting-started.html
+  - type: Authentication
+    url: authentication/strivr-authentication.yml
+  - type: Sandbox
+    url: sandbox/strivr-sandbox.yml
+  - type: Components
+    url: components/strivr-components.yml
+  - type: DataModel
+    url: data-model/strivr-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +64,79 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/strivr_stock/
+  url: https://www.strivr.com/
+- type: DeveloperPortal
+  url: https://developer.strivr.com/
+- type: Documentation
+  url: https://developer.strivr.com/docs/sdk/latest/index.html
+- type: GettingStarted
+  url: https://developer.strivr.com/docs/sdk/latest/unity/getting-started.html
+- type: SignUp
+  url: https://developer.strivr.com/contact.html
+- type: Login
+  url: https://portal.strivr.com/
+- type: Support
+  url: https://support.strivr.com/
+- type: Blog
+  url: https://www.strivr.com/blog
+- type: TermsOfService
+  url: https://www.strivr.com/terms
+- type: PrivacyPolicy
+  url: https://www.strivr.com/privacy
+- type: TrustCenter
+  url: https://trust.strivr.com/
+- type: Compliance
+  url: security/strivr-trust-center.yml
+- type: Packages
+  url: packages/strivr-packages.yml
+- type: SDKs
+  url: packages/strivr-packages.yml
+- type: Authentication
+  url: authentication/strivr-authentication.yml
+- type: Conventions
+  url: conventions/strivr-conventions.yml
+- type: Conformance
+  url: conformance/strivr-conformance.yml
+- type: Lifecycle
+  url: lifecycle/strivr-lifecycle.yml
+- type: ChangeLog
+  url: changelog/strivr-changelog.yml
+- type: Sandbox
+  url: sandbox/strivr-sandbox.yml
+- type: Components
+  url: components/strivr-components.yml
+- type: DataModel
+  url: data-model/strivr-data-model.yml
+- type: Plans
+  url: plans/strivr-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/strivr-rate-limits.yml
+- type: LLMsTxt
+  url: llms/strivr-llms.txt
+- type: DomainSecurity
+  url: security/strivr-domain-security.yml
+x-enrichment:
+  date: '2026-08-29'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: covered
+  detail: 'Strivr was fully profiled from its own public surface - developer portal, versioned SDK documentation,
+    trust center and DNS/TLS - yielding 15 artifacts. The one thing it does not publish is a machine-readable
+    contract: no OpenAPI, GraphQL SDL, AsyncAPI, Postman collection or JSON Schema exists on any Strivr
+    host, and api.strivr.com answers 401 WWW-Authenticate: Bearer with a zero-length body on every path
+    including /.well-known/*. Its public developer surface is a Unity C# SDK, not a callable web API.'
+  evidence:
+  - url: https://developer.strivr.com/docs/sdk/latest/index.html
+    status: 200
+  - url: https://api.strivr.com/openapi.json
+    status: 401
+  - url: https://api.strivr.com/.well-known/oauth-authorization-server
+    status: 401
+  - url: https://trust.strivr.com/
+    status: 200
+  - url: https://www.strivr.com/.well-known/agent-card.json
+    status: 404
+  checked: '2026-08-29'

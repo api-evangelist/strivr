@@ -1,0 +1,92 @@
+generated: '2026-08-29'
+method: searched
+source: https://trust.strivr.com/
+platform: SafeBase
+url: https://trust.strivr.com/
+note: Fetched successfully at 200 (276087 bytes) and read in full; subsequent re-fetches from the same
+  probe returned 403, which is an ordinary edge/bot policy and not a dead page. Contents below are transcribed
+  from the served page.
+evidence:
+- url: https://trust.strivr.com/
+  status: 200
+  bytes: 276087
+- url: https://trust.strivr.com/
+  status: 403
+  note: later re-fetch, bot challenge - page is live
+certifications:
+- name: SOC 2 Type 2
+  status: attested
+  report_available: true
+  access: gated - request access via trust center
+- name: CCPA
+  status: compliant
+- name: CPRA
+  status: compliant
+documents:
+- title: SOC 2 Type 2 Report
+  category: reports
+  access: private - request access
+- title: Pentest Report
+  category: reports
+  access: private - request access
+- title: Network Diagram
+  category: reports
+  access: private - request access
+- title: Data Processing Agreement
+  category: legal
+- title: Health and Safety Warning
+  category: legal
+- title: Strivr Security and Vendor Code of Conduct
+  category: legal
+- title: Strivr Terms and Conditions
+  category: legal
+risk_profile:
+  data_access_level: Internal
+  impact_level: Low
+  recovery_time_objective: 5 days
+program_areas:
+  data_security:
+  - Access Monitoring
+  - Data Backups
+  - Encryption-at-rest
+  app_security:
+  - Code Analysis
+  - Secure Development Training
+  - Software Development Lifecycle
+  data_privacy:
+  - Data Breach Notifications
+  - Access Control
+  - Data Access Logging
+  - Password Security
+  infrastructure:
+  - Status Monitoring
+  - BC/DR
+  - Data Center
+  endpoint_security:
+  - Disk Encryption
+  - Endpoint Detection & Response
+  - Threat Detection
+  network_security:
+  - Firewall
+  - Traffic Filtering
+  - Virtual Private Cloud
+  corporate_security:
+  - Asset Management Practices
+  - Email Protection
+  - Employee Training
+  legal:
+  - Subprocessors
+  - Data Processing Agreement
+  - Health and Safety Warning
+security_grades:
+- source: Qualys SSL Labs
+  subject: Strivr
+  grade: A
+customer_references_listed:
+- AdventHealth
+- Republic National Distributing
+- Sprouts Farmers Market
+vulnerability_disclosure_program: false
+vdp_note: No security.txt, bug bounty program (HackerOne/Bugcrowd/Intigriti) or coordinated disclosure
+  page was found on any Strivr host. probe-security-programs.py returned vdp=none. No Security pointer
+  is emitted.
