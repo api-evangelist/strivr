@@ -12,6 +12,22 @@ description: 'Strivr is an enterprise frontline-work platform founded in 2015 ou
 url: https://raw.githubusercontent.com/api-evangelist/strivr/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
+accessModel:
+  pricing: unknown
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Requires approval
+  confidence: medium
+  source:
+  - plans
+  - authentication
+  - rate-limits
+  - security
+  - sandbox
+  generated: '2026-09-03'
+  method: derived
 image: https://developer.strivr.com/images/Logo.png
 specificationVersion: '0.20'
 created: '2026-08-29'
