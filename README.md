@@ -64,5 +64,105 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Strivr is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/strivr_stock/
+Strivr is an enterprise frontline-work platform founded in 2015 out of Stanford University's Virtual Human Interaction Lab by Derek Belch. It began as immersive VR workforce training deployed at scale by Walmart, Bank of America and Verizon, and has since become an AI-native "Frontline Intelligence" layer that trains custom Visual Language Models on real-world workflows to detect, correct and guide task execution in real time through smart glasses. Its public developer surface is the Strivr SDK for Unity, which links a Unity project to a project in the Strivr Portal and streams experience, custom-event and gaze-tracking telemetry into Strivr's performance analytics. Strivr publishes no OpenAPI, GraphQL SDL or Postman collection; the REST host api.strivr.com answers 401 WWW-Authenticate: Bearer on every path.
+
+**Areas:** Immersive Learning · Virtual Reality · Workforce Training · Frontline Operations · Artificial Intelligence · Analytics · Unity SDK · Smart Glasses · Enterprise · Learning and Development
+
+## Strivr on APIs.io
+
+Everything profiled for Strivr is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/strivr/](https://apis.io/providers/strivr/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Strivr SDK for Unity](https://apis.io/apis/strivr/strivr-unity-sdk/) — The Strivr Software Development Kit for Unity makes Unity projects compatible with the Strivr Player in-headset software and with the Strivr Portal. It is…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Strivr Authentication](https://apis.io/security/strivr/strivr-authentication/)
+- [Strivr Domain Security](https://apis.io/security/strivr/strivr-domain-security/)
+- [Strivr Trust Center](https://apis.io/security/strivr/strivr-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Strivr Plans Pricing](https://apis.io/plans/strivr/strivr-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Strivr Rate Limits](https://apis.io/rate-limits/strivr/strivr-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.strivr.com/)
+- [Documentation](https://developer.strivr.com/docs/sdk/latest/index.html)
+- [Getting started](https://developer.strivr.com/docs/sdk/latest/unity/getting-started.html)
+- [Sign up](https://developer.strivr.com/contact.html)
+- [Support](https://support.strivr.com/)
+- [Blog](https://www.strivr.com/blog)
+- [Trust centre](https://trust.strivr.com/)
+- [Terms of service](https://www.strivr.com/terms)
+- [Privacy policy](https://www.strivr.com/privacy)
+
+## API Evangelist rating
+
+**Kin Score 34.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 54.8 |
+| Access clarity | 50.0 |
+
+**Agent readiness 5.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/strivr/](https://apis.io/providers/strivr/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Strivr: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/strivr/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
